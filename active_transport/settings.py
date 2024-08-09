@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'basetemp.apps.BasetempConfig',
 
     'crispy_forms',
+    'import_export',
 ]
 
 MIDDLEWARE = [
