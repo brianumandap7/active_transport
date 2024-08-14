@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-	path('', views.atdb, name = 'atdb'),
+	path('', login_required(views.atdb), name = 'atdb'),
 ]

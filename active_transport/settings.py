@@ -143,12 +143,16 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR
 STATIC_ROOT = STATIC_DIR
 
+LOGIN_URL = '/'
+
+LOGIN_REDIRECT_URL = '/atdb/'
+
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'basetemp/static')
 ]
 
-LOGIN_REDIRECT_URL = '/atdb/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
