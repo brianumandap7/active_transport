@@ -8,7 +8,7 @@ class CustomAuthForm(AuthenticationForm):
         fields = ['username','password']
     def __init__(self, *args, **kwargs):
         super(CustomAuthForm, self).__init__(*args, **kwargs)
-        self.fields['username'].widget = forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'})
+        self.fields['username'].widget = forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username', 'autocomplete': 'off'})
         self.fields['username'].label = False
         self.fields['password'].widget = forms.PasswordInput(attrs={'class': 'form-control', 'placeholder':'Password'})
         self.fields['password'].label = False

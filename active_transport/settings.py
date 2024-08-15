@@ -48,7 +48,19 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'import_export',
+
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -151,7 +163,6 @@ LOGIN_REDIRECT_URL = '/atdb/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'basetemp/static')
 ]
-
 
 
 # Default primary key field type
