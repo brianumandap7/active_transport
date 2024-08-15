@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse, HttpResponse
 from .models import Typeofwork, Region, BikeArea, RoadSection, BikeClass, FundSource, bikelanetbl
 from django.views.generic import TemplateView, ListView
+from rest_framework.views import APIView
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 
 # Create your views here.
@@ -50,3 +54,52 @@ class MView(ListView):
     model = bikelanetbl
     template_name = 'atdb/maindb.html'
     context_object_name = 'maindb'
+
+class towDB(APIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    def get(self, request, format=None):
+        prog = list(Typeofwork.objects.values())
+        return Response(prog)
+
+class regDB(APIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    def get(self, request, format=None):
+        prog = list(Region.objects.values())
+        return Response(prog)
+
+class areDB(APIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    def get(self, request, format=None):
+        prog = list(BikeArea.objects.values())
+        return Response(prog)
+
+class roaDB(APIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    def get(self, request, format=None):
+        prog = list(RoadSection.objects.values())
+        return Response(prog)
+
+class claDB(APIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    def get(self, request, format=None):
+        prog = list(BikeClass.objects.values())
+        return Response(prog)
+
+class funDB(APIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    def get(self, request, format=None):
+        prog = list(FundSource.objects.values())
+        return Response(prog)
+
+class bikDB(APIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    def get(self, request, format=None):
+        prog = list(bikelanetbl.objects.values())
+        return Response(prog)
