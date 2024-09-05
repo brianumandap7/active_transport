@@ -29,11 +29,16 @@
   	}
 
   	#footer {
-  		position: absolute;
+  	position: absolute;
  		bottom: 0;
  		width: 100%;
  	}
-        
+  .leftpane {
+    background-image: url('https://i.pinimg.com/originals/d8/d1/64/d8d1645996dcf0eb683cacc81210c606.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+
+  }
   </style>
   <body>
     
@@ -44,7 +49,15 @@
 		</nav>-->
     <!-- end of nav -->
 		<div class="container-fluid">
-			{% block content %}{% endblock %}
+
+      <div class="row">
+        <div class="col lg-6 col-md-6 col-xs-6 d-none d-md-block leftpane">
+         
+        </div>
+        <div class="col lg-6 col-md-6 col-xs-6">
+			   {% block content %}{% endblock %}
+        </div>
+      </div>
 		</div>
 
 	<!-- start of footer-->
