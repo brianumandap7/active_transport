@@ -10,63 +10,166 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
         }
+
+        /* Sidebar */
         .sidebar {
             height: 100vh;
-            width: 500px;
-            background-color: #343a40;
+            width: 220px;
+            background-color: #0d47a1; /* Blue */
             padding-top: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
         }
+
         .sidebar a {
             color: white;
-            padding: 15px;
+            padding: 10px 15px;
             display: block;
             text-decoration: none;
+            font-size: 16px;
         }
+
         .sidebar a:hover {
-            background-color: #495057;
-            text-decoration: none;
+            background-color: #063b85;
         }
+
+        /* Main content */
         .content {
+            margin-left: 220px;
             padding: 20px;
+            min-height: 100vh;
+            box-sizing: border-box;
         }
+
+        /* Header */
         .header {
-            background-color: #343a40;
+            background-color: #0d47a1; /* Red */
             color: white;
-            padding: 10px;
-            text-align: right;
-            width: 100%;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .header h2 {
+
+        .header h3 {
             margin: 0;
+            font-size: 20px;
+            font-weight: bold;
         }
+
+        .header a {
+            color: white;
+            padding: 6px 12px;
+            border: 1px solid white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .header a:hover {
+            background-color: white;
+            color: #0d47a1;
+        }
+
+        /* Card styling */
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+
         .card img {
-            height: 200px;
+            height: 160px;
             object-fit: cover;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            padding: 15px;
+            font-size: 12px;
+        }
+
+        /* Responsive behavior */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .sidebar a {
+                text-align: center;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+
+            .header {
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="d-flex">
-        <!-- Sidebar -->
 
-
-        <!-- Main content -->
-        <div class="content">
-        	
-            <div class="header">
-            	<h3><b>Active Transport Database Access</b> - {{user}}  <a href="/logout/" class="btn btn-secondary">Logout</a></h3>
-  
-            </div>
-
-            <!-- Cards -->
-            {% block content %}
-
-            {% endblock content %}
-            <!-- end of cards -->
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div>
+            <a href="#">Dashboard</a>
+            <a href="#">Reports</a>
+            <a href="#">Settings</a>
+            <a href="#">Help</a>
         </div>
     </div>
 
+    <!-- Main content -->
+    <div class="content">
+        
+        <!-- Header -->
+        <div class="header">
+            <h3>Active Transport Database Access</h3>
+            <a href="/logout/">Logout</a>
+        </div>
+
+        <!-- Cards -->
+        {% block content %}
+        
+
+        {% endblock content %}
+        <!-- End of Cards -->
+
+        <!-- Footer -->
+        <div class="footer">
+            <small>&copy; 2024 Department of Transportation</small>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

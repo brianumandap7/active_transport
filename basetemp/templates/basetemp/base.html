@@ -9,50 +9,117 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="shortcut icon" type="image/png" href="{% static 'basetemp/favicondotr32.png' %}"/>
-    <title>Active Transport Dasbboard DB</title>
-  </head>
-  <style>
-  	.nav-prop {
-  		padding-bottom: 0px;
-  	}
-  	.navbar-color {
-  		background-color: #0d47a1;
-
-  	}
-  	.navbar-color .nav-custom {
-  		color: white;
-  	}
-
-  	.logoimg {
-  		width: 60px;
-  		height: 60px;
-  	}
-
-  	#footer {
-  	position: absolute;
- 		bottom: 0;
- 		width: 100%;
- 	}
-  .leftpane {
-    background-image: url('https://i.pinimg.com/originals/d8/d1/64/d8d1645996dcf0eb683cacc81210c606.gif');
-    background-position: center;
-    background-repeat: no-repeat;
-
-  }
-  </style>
-  <body>
+    <title>Login | Active Transport Dashboard</title>
     
-  	<!-- start of nav -->
-    	<!--<nav class="navbar navbar-color nav-prop">
-    		<h1 class="navbar-brand nav-custom"><span class = "dipms"><a href="/"><img src="{% static 'basetemp/dotr_logo.png' %}" class = "img img-responsive logoimg"></a>&nbsp;&nbsp;DOTMS&nbsp;<small>DOTr Online Travel Management System</small></span></h1>
-  			
-		</nav>-->
-    <!-- end of nav -->
-		<div class="container-fluid">
+    <style>
+      body, html {
+        height: 100%;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f7f6;
+      }
 
-      <div class="row">
-        <div class="col lg-6 col-md-6 col-xs-6 d-none d-md-block leftpane">
-         
+      .login-container {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .login-box {
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+      }
+
+      .login-box h2 {
+        margin-bottom: 30px;
+        color: #0d47a1;
+        font-size: 24px;
+        text-align: center;
+      }
+
+      .form-control {
+        border-radius: 50px;
+        padding: 12px 20px;
+      }
+
+      .btn-primary {
+        background-color: #0d47a1;
+        border-color: #0d47a1;
+        border-radius: 50px;
+        padding: 10px 20px;
+        width: 100%;
+        transition: background-color 0.3s;
+      }
+
+      .btn-primary:hover {
+        background-color: #063b85;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 20px;
+        color: #888;
+      }
+
+      /* Left Pane - Abstract Background with Blue and Red */
+      .leftpane {
+        background: linear-gradient(135deg, #0d47a1 30%, #e53935 60%, #f4f4f4 100%);
+        height: 100vh;
+        position: relative;
+      }
+
+      .abstract-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+      }
+
+      .abstract-bg svg {
+        position: absolute;
+        top: -20%;
+        right: -10%;
+        opacity: 0.2;
+      }
+
+      .abstract-bg svg:nth-child(2) {
+        top: 30%;
+        left: -15%;
+        opacity: 0.2;
+      }
+
+      .abstract-bg svg:nth-child(3) {
+        bottom: -20%;
+        left: 20%;
+        opacity: 0.15;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid h-100">
+      <div class="row h-100">
+        <!-- Left pane with abstract blue and red background -->
+        <div class="col-lg-6 d-none d-lg-block leftpane">
+          <div class="abstract-bg">
+            <!-- Simple Abstract SVG shapes -->
+            <svg width="500" height="500">
+              <circle cx="250" cy="250" r="200" fill="#ffcccb" />
+            </svg>
+            <svg width="400" height="400">
+              <rect x="50" y="50" width="300" height="300" fill="#42a5f5" />
+            </svg>
+            <svg width="300" height="300">
+              <polygon points="150,0 300,300 0,300" fill="#e53935" />
+            </svg>
+          </div>
         </div>
         <div class="col lg-6 col-md-6 col-xs-6">
 			   {% block content %}{% endblock %}
@@ -61,11 +128,7 @@
 		</div>
 
 	<!-- start of footer-->
-		<footer id="footer" class="py-3 bg-primary">
-        	<div class="container text-center">
-          		<small  class = "footertext" style="color:white">&nbsp;&copy; Copyright 2024: DEPARTMENT OF TRANSPORTATION - MISS - ISSD</small>
-        	</div>
-      	</footer>
+
 	<!-- end of footer -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
