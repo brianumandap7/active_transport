@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.http import JsonResponse, HttpResponse
 from .models import Typeofwork, Region, BikeArea, RoadSection, BikeClass, FundSource, bikelanetbl
@@ -7,7 +7,46 @@ from rest_framework.views import APIView
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from .forms import TypeofworkForm
 
+#edit type of work
+def edit_typeofwork(request, id):
+    # Get the instance to be edited
+    typeofwork = get_object_or_404(Typeofwork, Typeofwork_id=id)
+    
+    if request.method == 'POST':
+        form = TypeofworkForm(request.POST, instance=typeofwork)
+        if form.is_valid():
+            form.save()
+            return redirect('success_url')  # Redirect to a success page
+    else:
+        form = TypeofworkForm(instance=typeofwork)
+
+    return render(request, 'atdb/edit_typeofwork.html', {'form': form})
+
+#edit regions
+def edit_regions(request, id):
+    return render(request, 'atdb/edit_regions.html', {'form': form})
+
+#edit areas
+def edit_areas(request, id):
+    return render(request, 'atdb/edit_areas.html', {'form': form})
+
+#edit road sections
+def edit_roadsections(request, id):
+    return render(request, 'atdb/edit_roadsections.html', {'form': form})
+
+#edit classes
+def edit_classes(request, id):
+    return render(request, 'atdb/edit_classes.html', {'form': form})
+
+#edit fund sources
+def edit_fundsources(request, id):
+    return render(request, 'atdb/edit_fundsources.html', {'form': form})
+
+#edit main db
+def edit_maindb(request, id):
+    return render(request, 'atdb/edit_maindb.html', {'form': form})
 
 # Create your views here.
 class ATDBView(TemplateView):

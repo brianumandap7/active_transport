@@ -1,11 +1,13 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Type of Work Table</title>
     <!-- Bootstrap 4 CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="{% static 'basetemp/favicondotr32.png' %}"/>
+    <title>Type of Work | Active Transport Dashboard</title>
 </head>
 <style>
     .btbl {
@@ -30,7 +32,7 @@
                 <td>{{items.Typeofwork_id}}</td>
                 <td>{{items.Typeofwork}}</td>
                 <td>
-                	<a href="#" class="btn btn-warning">Edit Item</a>
+                	<a href="/atdb/edit_typeofwork/{{items.Typeofwork_id}}" class="btn btn-warning">Edit Item</a>
                 	<a href="#" class="btn btn-danger">Archive Item</a>
                 </td>
             </tr>
