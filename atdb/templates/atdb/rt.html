@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regions Table</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'basetemp/favicondotr32.png' %}"/>
+    <title>Regions | Active Transport Dashboard</title>
     <!-- Bootstrap 4 CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -30,7 +32,7 @@
                 <td>{{items.Region_id}}</td>
                 <td>{{items.Region}}</td>
                 <td>
-                	<a href="#" class="btn btn-warning">Edit Item</a>
+                	<a href="/atdb/edit_regions/{{items.Region_id}}" class="btn btn-warning">Edit Item</a>
                 	<a href="#" class="btn btn-danger">Archive Item</a>
                 </td>
             </tr>

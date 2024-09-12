@@ -20,5 +20,6 @@ urlpatterns = [
     path('claDB/', views.claDB.as_view(), name='claDB'),
     path('funDB/', views.funDB.as_view(), name='funDB'),
     path('bikDB/', views.bikDB.as_view(), name='bikDB'),
-    path('edit_typeofwork/<int:id>/', views.edit_typeofwork, name='edit_typeofwork'),
+    path('edit_typeofwork/<int:tag>/', views.edit_typeofwork, name='edit_typeofwork'),
+    path('edit_regions/<int:tag>/', views.edit_regions, name='edit_regions'),
 ]

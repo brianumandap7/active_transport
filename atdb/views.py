@@ -7,26 +7,40 @@ from rest_framework.views import APIView
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from .forms import TypeofworkForm
+from .forms import TypeofworkForm, RegionForm
 
 #edit type of work
-def edit_typeofwork(request, id):
+def edit_typeofwork(request, tag):
     # Get the instance to be edited
-    typeofwork = get_object_or_404(Typeofwork, Typeofwork_id=id)
+    typeofwork = get_object_or_404(Typeofwork, Typeofwork_id=tag)
     
     if request.method == 'POST':
         form = TypeofworkForm(request.POST, instance=typeofwork)
         if form.is_valid():
             form.save()
-            return redirect('success_url')  # Redirect to a success page
+            return redirect('/atdb/towtbl')  # Redirect to a success page
     else:
         form = TypeofworkForm(instance=typeofwork)
+        tag = tag
 
-    return render(request, 'atdb/edit_typeofwork.html', {'form': form})
+    return render(request, 'atdb/edit_typeofwork.html', {'form': form, 'tag': tag})
+
 
 #edit regions
-def edit_regions(request, id):
-    return render(request, 'atdb/edit_regions.html', {'form': form})
+def edit_regions(request, tag):
+
+    # Get the instance to be edited
+    region = get_object_or_404(Region, Region_id=tag)
+    
+    if request.method == 'POST':
+        form = RegionForm(request.POST, instance=region)
+        if form.is_valid():
+            form.save()
+            return redirect('/atdb/rt')  # Redirect to a success page
+    else:
+        form = RegionForm(instance=region)
+        tag = tag
+    return render(request, 'atdb/edit_regions.html', {'form': form, 'tag': tag})
 
 #edit areas
 def edit_areas(request, id):
