@@ -22,4 +22,10 @@ urlpatterns = [
     path('bikDB/', views.bikDB.as_view(), name='bikDB'),
     path('edit_typeofwork/<int:tag>/', views.edit_typeofwork, name='edit_typeofwork'),
     path('edit_regions/<int:tag>/', views.edit_regions, name='edit_regions'),
+    path('edit_areas/<int:tag>/', views.edit_areas, name='edit_areas'),
+    path('edit_roadsections/<int:tag>/', views.edit_roadsections, name='edit_roadsections'),
+    path('edit_classes/<int:tag>/', views.edit_classes, name='edit_classes'),
+    path('edit_fundsources/<int:tag>/', views.edit_fundsources, name='edit_fundsources'),
+    path('edit_maintbl/<int:tag>/', views.edit_maintbl, name='edit_maintbl'),
+    path('hist/<str:tag>/', views.hist, name='hist'),
 ]

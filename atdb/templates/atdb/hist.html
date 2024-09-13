@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="{% static 'basetemp/favicondotr32.png' %}"/>
+    <title>Areas | Active Transport Dashboard</title>
+    <!-- Include Bootstrap 4 CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .btbl {
+        width: 120px;
+    }
+</style>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Audit Log for {{ tag|title }}</h2>
+
+        <!-- Check if que contains any items -->
+        {% if que %}
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <!-- Adjust columns to your data fields -->
+                            <th>Action #</th>
+                            <th>ID</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>User</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Loop through `que` queryset -->
+                        {% for item in que %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>  <!-- Counter for row numbering -->
+                            <td>{{ item.id }}</td>          <!-- Example field: ID -->
+                            <td>{{ item.old_value }}</td>       <!-- Example field: Action -->
+                            <td>{{ item.new_value }}</td>       <!-- Example field: Action -->
+                            <td>{{ item.edited_by }}</td>         <!-- Example field: User -->
+                            <td>{{ item.timestamp }}</td>    <!-- Example field: Timestamp -->
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <a href="/atdb" class="btn btn-primary btbl">Back</a>
+        {% else %}
+            <p class="text-center">No audit logs available.</p>
+        {% endif %}
+    </div>
+
+    <!-- Include Bootstrap 4 JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://
