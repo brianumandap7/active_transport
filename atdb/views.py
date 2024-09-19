@@ -191,23 +191,37 @@ def edit_maintbl(request, tag):
 
     return render(request, 'atdb/edit_maintbl.html', {'form': form, 'bikelane': bikelane, 'messages': messages})
 
+def add_tow(request):
+    context = {
+
+    }
+    return render(request, 'atdb/add_tow.html', context)
+
+
 def hist(request, tag):
     que = None
 
     if tag == "tw":
         que = TypeofworkAuditLog.objects.all()
+        tag = "Types of Work Table"
     elif tag == "rt":
         que = RegionAuditLog.objects.all()
+        tag = "Region Table"
     elif tag == "at":
         que = BikeAreaAuditLog.objects.all()
+        tag = "Area Table"
     elif tag == "rs":
         que = RoadSectionAuditLog.objects.all()
+        tag = "Road Section Table"
     elif tag == "cl":
         que = BikeClassAuditLog.objects.all()
+        tag = "Class Table"
     elif tag == "fs":
         que = FundSourceAuditLog.objects.all()
+        tag = "Fund Source Table"
     elif tag == "maindb":
         que = BikelaneAuditLog.objects.all()
+        tag = "Bike Lane Table"
 
     context = {
         'tag': tag,

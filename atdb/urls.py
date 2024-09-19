@@ -28,4 +28,5 @@ urlpatterns = [
     path('edit_fundsources/<int:tag>/', views.edit_fundsources, name='edit_fundsources'),
     path('edit_maintbl/<int:tag>/', views.edit_maintbl, name='edit_maintbl'),
     path('hist/<str:tag>/', views.hist, name='hist'),
+    path('add_tow/', views.add_tow, name='add_tow'),
 ]

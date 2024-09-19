@@ -1,7 +1,31 @@
 {% extends "basetemp/base.html" %}
 {% block content %}
 {% load static %}
+<style>
 
+body {
+
+}
+.bannerdiv {
+	margin-top: 70px;
+}
+.logoutcont{
+	padding-top: 60px;
+	padding-right: 60px;
+	padding-left: 60px;
+	padding-bottom: 60px;
+}
+.bannerdiv1 {
+	margin-top: 127px;
+}
+.loginbtn, .loginbtn:hover {
+	/* background-color: #0d47a1; */
+	color: white;
+}
+
+</style>
+
+<div class="logoutcont">
 <center>
 	<a href="/">
 	<img src="{% static 'basetemp/dotricon.png' %}" width="180" height="180" >
@@ -10,4 +34,5 @@
 	<h5 class="warning" style = "font-family:helvetica; color: #4F4F4F"><small><b>You've logged out from Active Transport Dashboard DB</b></small></h5>
     	<a href = "/">Log-in to continue</a>      
 </center>
+</div>
 {% endblock content %}
