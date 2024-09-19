@@ -120,7 +120,7 @@ class bikelanetbl(models.Model):
     EndPointX = models.DecimalField(max_digits=20, decimal_places=10)
     EndPointY = models.DecimalField(max_digits=20, decimal_places=10)
     BikeClass = models.ForeignKey(BikeClass, on_delete=models.CASCADE, null=True, blank=True, related_name="BikeClass_name")
-    BikeDate = models.DateField()
+    BikeDate = models.DateField(null = True, blank = True)
     FundSource = models.ForeignKey(FundSource, on_delete=models.CASCADE, null=True, blank=True, related_name="FundSource_name")
     Remarks = models.CharField(max_length=250, blank=True, null=True)
 
