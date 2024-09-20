@@ -12,6 +12,13 @@ from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.utils import timezone
 
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.views.generic import ListView
+
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import Permission
+
 
 #edit type of work
 def edit_typeofwork(request, tag):
@@ -243,36 +250,176 @@ class TowTblView(ListView):
     model = Typeofwork
     template_name = 'atdb/towtbl.html'
     context_object_name = 'tow'
+    app_label = 'atdb'  # Define the app label here
+
+    def handle_no_permission(self):
+        return super().handle_no_permission()
+
+    def get_queryset(self):
+        return super().get_queryset()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Use the defined app_label
+        model_name = self.model._meta.model_name  # e.g., 'typeofwork'
+        permission_string = f'{self.app_label}.change_{model_name}'  # Construct the permission string
+
+        # Check if the user has the constructed permission
+        context['has_permission'] = self.request.user.has_perm(permission_string)
+        context['user_permissions'] = self.request.user.get_all_permissions()
+        
+        return context
 
 class RTView(ListView):
     model = Region
     template_name = 'atdb/rt.html'
     context_object_name = 'rt'
+    app_label = 'atdb'  # Define the app label here
+
+    def handle_no_permission(self):
+        return super().handle_no_permission()
+
+    def get_queryset(self):
+        return super().get_queryset()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Use the defined app_label
+        model_name = self.model._meta.model_name  # e.g., 'region'
+        permission_string = f'{self.app_label}.change_{model_name}'  # Construct the permission string
+
+        # Check if the user has the constructed permission
+        context['has_permission'] = self.request.user.has_perm(permission_string)
+        context['user_permissions'] = self.request.user.get_all_permissions()
+        
+        return context
 
 class ATView(ListView):
     model = BikeArea
     template_name = 'atdb/at.html'
     context_object_name = 'at'
+    app_label = 'atdb'
+
+    def handle_no_permission(self):
+        return super().handle_no_permission
+
+    def get_queryset(self):
+        return super().get_queryset()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Dynamically construct the permission string for 'change' action on the BikeArea model
+        model_name = self.model._meta.model_name  # 'bikearea'
+        permission_string = f'{self.app_label}.change_{model_name}'
+
+        # Check if user has the dynamically generated permission
+        context['has_permission'] = self.request.user.has_perm(permission_string)
+        context['user_permissions'] = self.request.user.get_all_permissions() 
+        
+        return context
 
 class RSView(ListView):
     model = RoadSection
     template_name = 'atdb/rs.html'
     context_object_name = 'rs'
+    app_label = 'atdb'  # Define the app label here
+
+    def handle_no_permission(self):
+        return super().handle_no_permission()
+
+    def get_queryset(self):
+        return super().get_queryset()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Use the defined app_label
+        model_name = self.model._meta.model_name  # e.g., 'roadsection'
+        permission_string = f'{self.app_label}.change_{model_name}'  # Construct the permission string
+
+        # Check if the user has the constructed permission
+        context['has_permission'] = self.request.user.has_perm(permission_string)
+        context['user_permissions'] = self.request.user.get_all_permissions()
+        
+        return context
 
 class CLView(ListView):
     model = BikeClass
     template_name = 'atdb/cl.html'
     context_object_name = 'cl'
+    app_label = 'atdb'  # Define the app label here
+
+    def handle_no_permission(self):
+        return super().handle_no_permission()
+
+    def get_queryset(self):
+        return super().get_queryset()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Use the defined app_label
+        model_name = self.model._meta.model_name  # e.g., 'bikeclass'
+        permission_string = f'{self.app_label}.change_{model_name}'  # Construct the permission string
+
+        # Check if the user has the constructed permission
+        context['has_permission'] = self.request.user.has_perm(permission_string)
+        context['user_permissions'] = self.request.user.get_all_permissions()
+        
+        return context
 
 class FSView(ListView):
     model = FundSource
     template_name = 'atdb/fs.html'
     context_object_name = 'fs'
+    app_label = 'atdb'  # Define the app label here
+
+    def handle_no_permission(self):
+        return super().handle_no_permission()
+
+    def get_queryset(self):
+        return super().get_queryset()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Use the defined app_label
+        model_name = self.model._meta.model_name  # e.g., 'fundsource'
+        permission_string = f'{self.app_label}.change_{model_name}'  # Construct the permission string
+
+        # Check if the user has the constructed permission
+        context['has_permission'] = self.request.user.has_perm(permission_string)
+        context['user_permissions'] = self.request.user.get_all_permissions()
+        
+        return context
 
 class MView(ListView):
     model = bikelanetbl
     template_name = 'atdb/maindb.html'
     context_object_name = 'maindb'
+    app_label = 'atdb'  # Define the app label here
+
+    def handle_no_permission(self):
+        return super().handle_no_permission()
+
+    def get_queryset(self):
+        return super().get_queryset()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Use the defined app_label
+        model_name = self.model._meta.model_name  # e.g., 'bikelanetbl'
+        permission_string = f'{self.app_label}.change_{model_name}'  # Construct the permission string
+
+        # Check if the user has the constructed permission
+        context['has_permission'] = self.request.user.has_perm(permission_string)
+        context['user_permissions'] = self.request.user.get_all_permissions()
+        
+        return context
 
 class towDB(APIView):
     authentication_classes = [BasicAuthentication]

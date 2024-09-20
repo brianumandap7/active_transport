@@ -8,6 +8,8 @@
     <title>Areas | Active Transport Dashboard</title>
     <!-- Bootstrap 4 CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
 </head>
 
 <style>
@@ -29,7 +31,7 @@
         {% endfor %}
     {% endif %}
     <h2>Area Table <a href="/admin/atdb/bikearea/" class="btn btn-secondary" target="__blank">View in console</a> <a href="#" class="btn btn-info">Add Item</a></h2>
-    <table class="table table-striped table-bordered">
+    <table id="areaTable" class="table table-striped table-bordered">
         <thead class="thead-dark">
             <tr>
                 <th>ID</th>
@@ -38,29 +40,40 @@
             </tr>
         </thead>
         <tbody>
-        	{% for items in at %}
+            {% for items in at %}
             <tr>
-
                 <td>{{items.BikeArea_id}}</td>
                 <td>{{items.BikeArea}}</td>
                 <td>
-                	<a href="/atdb/edit_areas/{{items.BikeArea_id}}" class="btn btn-warning">Edit Item</a>
-                	<a href="#" class="btn btn-danger">Archive Item</a>
+
+                    {% if has_permission %}
+                    <a href="/atdb/edit_areas/{{items.BikeArea_id}}" class="btn btn-warning">Edit Item</a>
+                    {% else %}
+                    <button type="button" class="btn btn-warning mbtn btn-sm" disabled>Edit</button>
+                    {% endif %}
+                    <a href="#" class="btn btn-danger">Archive Item</a>
                 </td>
             </tr>
-
             {% endfor %}
-            
-            <!-- Add more rows as needed -->
         </tbody>
     </table>
 
     <a href="/atdb" class="btn btn-primary btbl">Back</a>
 </div>
 
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <!-- Bootstrap 4 JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#areaTable').DataTable();
+    });
+</script>
+
 </body>
 </html>
