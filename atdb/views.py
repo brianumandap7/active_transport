@@ -264,9 +264,13 @@ class TowTblView(ListView):
         # Use the defined app_label
         model_name = self.model._meta.model_name  # e.g., 'typeofwork'
         permission_string = f'{self.app_label}.change_{model_name}'  # Construct the permission string
+        add_permission_string = f'{self.app_label}.add_{model_name}'
+        view_permission_string = f'{self.app_label}.view_{model_name}'
 
         # Check if the user has the constructed permission
         context['has_permission'] = self.request.user.has_perm(permission_string)
+        context['can_add'] = self.request.user.has_perm(add_permission_string)
+        context['can_view'] = self.request.user.has_perm(view_permission_string)
         context['user_permissions'] = self.request.user.get_all_permissions()
         
         return context
@@ -289,9 +293,13 @@ class RTView(ListView):
         # Use the defined app_label
         model_name = self.model._meta.model_name  # e.g., 'region'
         permission_string = f'{self.app_label}.change_{model_name}'  # Construct the permission string
+        add_permission_string = f'{self.app_label}.add_{model_name}'
+        view_permission_string = f'{self.app_label}.view_{model_name}'
 
         # Check if the user has the constructed permission
         context['has_permission'] = self.request.user.has_perm(permission_string)
+        context['can_add'] = self.request.user.has_perm(add_permission_string)
+        context['can_view'] = self.request.user.has_perm(view_permission_string)
         context['user_permissions'] = self.request.user.get_all_permissions()
         
         return context
@@ -313,11 +321,15 @@ class ATView(ListView):
         
         # Dynamically construct the permission string for 'change' action on the BikeArea model
         model_name = self.model._meta.model_name  # 'bikearea'
-        permission_string = f'{self.app_label}.change_{model_name}'
+        permission_string = f'{self.app_label}.change_{model_name}'  # Construct the permission string
+        add_permission_string = f'{self.app_label}.add_{model_name}'
+        view_permission_string = f'{self.app_label}.view_{model_name}'
 
-        # Check if user has the dynamically generated permission
+        # Check if the user has the constructed permission
         context['has_permission'] = self.request.user.has_perm(permission_string)
-        context['user_permissions'] = self.request.user.get_all_permissions() 
+        context['can_add'] = self.request.user.has_perm(add_permission_string)
+        context['can_view'] = self.request.user.has_perm(view_permission_string)
+        context['user_permissions'] = self.request.user.get_all_permissions()
         
         return context
 
@@ -339,9 +351,13 @@ class RSView(ListView):
         # Use the defined app_label
         model_name = self.model._meta.model_name  # e.g., 'roadsection'
         permission_string = f'{self.app_label}.change_{model_name}'  # Construct the permission string
+        add_permission_string = f'{self.app_label}.add_{model_name}'
+        view_permission_string = f'{self.app_label}.view_{model_name}'
 
         # Check if the user has the constructed permission
         context['has_permission'] = self.request.user.has_perm(permission_string)
+        context['can_add'] = self.request.user.has_perm(add_permission_string)
+        context['can_view'] = self.request.user.has_perm(view_permission_string)
         context['user_permissions'] = self.request.user.get_all_permissions()
         
         return context
@@ -364,9 +380,13 @@ class CLView(ListView):
         # Use the defined app_label
         model_name = self.model._meta.model_name  # e.g., 'bikeclass'
         permission_string = f'{self.app_label}.change_{model_name}'  # Construct the permission string
+        add_permission_string = f'{self.app_label}.add_{model_name}'
+        view_permission_string = f'{self.app_label}.view_{model_name}'
 
         # Check if the user has the constructed permission
         context['has_permission'] = self.request.user.has_perm(permission_string)
+        context['can_add'] = self.request.user.has_perm(add_permission_string)
+        context['can_view'] = self.request.user.has_perm(view_permission_string)
         context['user_permissions'] = self.request.user.get_all_permissions()
         
         return context
@@ -389,9 +409,13 @@ class FSView(ListView):
         # Use the defined app_label
         model_name = self.model._meta.model_name  # e.g., 'fundsource'
         permission_string = f'{self.app_label}.change_{model_name}'  # Construct the permission string
+        add_permission_string = f'{self.app_label}.add_{model_name}'
+        view_permission_string = f'{self.app_label}.view_{model_name}'
 
         # Check if the user has the constructed permission
         context['has_permission'] = self.request.user.has_perm(permission_string)
+        context['can_add'] = self.request.user.has_perm(add_permission_string)
+        context['can_view'] = self.request.user.has_perm(view_permission_string)
         context['user_permissions'] = self.request.user.get_all_permissions()
         
         return context
@@ -414,9 +438,13 @@ class MView(ListView):
         # Use the defined app_label
         model_name = self.model._meta.model_name  # e.g., 'bikelanetbl'
         permission_string = f'{self.app_label}.change_{model_name}'  # Construct the permission string
+        add_permission_string = f'{self.app_label}.add_{model_name}'
+        view_permission_string = f'{self.app_label}.view_{model_name}'
 
         # Check if the user has the constructed permission
         context['has_permission'] = self.request.user.has_perm(permission_string)
+        context['can_add'] = self.request.user.has_perm(add_permission_string)
+        context['can_view'] = self.request.user.has_perm(view_permission_string)
         context['user_permissions'] = self.request.user.get_all_permissions()
         
         return context
