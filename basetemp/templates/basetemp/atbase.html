@@ -145,8 +145,10 @@
     <div class="sidebar">
         <div>
             <a href="#">Dashboard</a>
+            {% if request.user.is_superuser %}
             <a href="#">Reports</a>
-            <a href="#">Settings</a>
+            {% endif %}
+            <a href="/admin/auth/user/">Settings</a>
             <a href="#">Help</a>
         </div>
     </div>
