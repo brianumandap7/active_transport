@@ -19,6 +19,10 @@ from django.views.generic import ListView
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
 
+from django.views.generic.edit import CreateView
+
+from django.urls import reverse_lazy
+
 
 #edit type of work
 def edit_typeofwork(request, tag):
@@ -198,11 +202,18 @@ def edit_maintbl(request, tag):
 
     return render(request, 'atdb/edit_maintbl.html', {'form': form, 'bikelane': bikelane, 'messages': messages})
 
-def add_tow(request):
-    context = {
+class add_tow(CreateView):
+    model = Typeofwork
+    form_class = TypeofworkForm
+    template_name = 'atdb/add_tow.html'  # The template for the form
+    success_url = reverse_lazy('towtbl')
 
-    }
-    return render(request, 'atdb/add_tow.html', context)
+
+class add_rt(CreateView):
+    model = Region
+    form_class = RegionForm
+    template_name = 'atdb/add_rt.html'  # The template for the form
+    success_url = reverse_lazy('rt')
 
 
 def hist(request, tag):
