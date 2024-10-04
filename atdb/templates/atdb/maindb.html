@@ -40,7 +40,7 @@
         {% endfor %}
     {% endif %}
 
-    <h2>Main Bike Lane Table {% if can_view %}<a href="/admin/atdb/bikelanetbl/" class="btn btn-secondary" target="_blank">View in console</a>{% else %}<button type="button" class="btn btn-secondary" disabled>View in console</button>{% endif %} {% if can_add %}<a href="/atdb/add_maindb" class="btn btn-info">Add Item</a>{% else %}<button type="button" class="btn btn-info" disabled>Add Item</button>{% endif %}</h2>
+    <h2>Main Bike Lane Table {% if can_view %}<a href="/admin/atdb/bikelanetbl/" class="btn btn-secondary" target="_blank">View in console</a>{% else %}<button type="button" class="btn btn-secondary" disabled>View in console</button>{% endif %} {% if can_add %}<a href="/atdb/add_maindb" class="btn btn-info">Add Item</a> <a href="/atdb/add_bulk" class="btn btn-info">Add Bulk</a>{% else %}<button type="button" class="btn btn-info" disabled>Add Item</button>{% endif %}</h2>
     
         <table id="mainBikeLaneTable" class="table table-striped table-bordered text-sm">
             <thead class="thead-dark">

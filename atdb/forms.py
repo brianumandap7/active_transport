@@ -1,6 +1,9 @@
 from django import forms
 from .models import Typeofwork, Region, BikeArea, RoadSection, BikeClass, FundSource, bikelanetbl
 
+class ExcelUploadForm(forms.Form):
+    file = forms.FileField()
+
 class TypeofworkForm(forms.ModelForm):
     class Meta:
         model = Typeofwork
