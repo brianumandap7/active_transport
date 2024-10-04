@@ -208,13 +208,82 @@ class add_tow(CreateView):
     template_name = 'atdb/add_tow.html'  # The template for the form
     success_url = reverse_lazy('towtbl')
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> c1afea27c9cae0bcb618cafc73a57f6fcdfb9a5f
 
 class add_rt(CreateView):
     model = Region
     form_class = RegionForm
     template_name = 'atdb/add_rt.html'  # The template for the form
     success_url = reverse_lazy('rt')
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
+=======
+>>>>>>> 1fd12c7dea477d1a49f57308368cb6e633db56ec
+class add_rt(CreateView):
+    model = Region
+    form_class = RegionForm
+    template_name = 'atdb/add_rt.html'  # The template for the form
+    success_url = reverse_lazy('rt')
+>>>>>>> fcba6d96ad37a22c78158be7ed842d4d9ffd28ab
+
+class add_rt(CreateView):
+    model = Region
+    form_class = RegionForm
+    template_name = 'atdb/add_rt.html'  # The template for the form
+    success_url = reverse_lazy('rt')
+<<<<<<< HEAD
+
+class add_at(CreateView):
+    model = BikeArea
+    form_class = BikeAreaForm
+    template_name = 'atdb/add_at.html'  # The template for the form
+    success_url = reverse_lazy('at')
+
+=======
+>>>>>>> 4eddf0b09b240a1111a2dac7613ccef835aea730
+
+class add_at(CreateView):
+    model = BikeArea
+    form_class = BikeAreaForm
+    template_name = 'atdb/add_at.html'  # The template for the form
+    success_url = reverse_lazy('at')
+
+<<<<<<< HEAD
+=======
+>>>>>>> 1fd12c7dea477d1a49f57308368cb6e633db56ec
+>>>>>>> 4eddf0b09b240a1111a2dac7613ccef835aea730
+class add_rs(CreateView):
+    model = RoadSection
+    form_class = RoadSectionForm
+    template_name = 'atdb/add_rs.html'  # The template for the form
+    success_url = reverse_lazy('rs')
+>>>>>>> c1afea27c9cae0bcb618cafc73a57f6fcdfb9a5f
+
+class add_cl(CreateView):
+    model = BikeClass
+    form_class = BikeClassForm
+    template_name = 'atdb/add_cl.html'  # The template for the form
+    success_url = reverse_lazy('cl')
+
+class add_fs(CreateView):
+    model = FundSource
+    form_class = FundSourceForm
+    template_name = 'atdb/add_fs.html'  # The template for the form
+    success_url = reverse_lazy('fs')
+
+class add_maindb(CreateView):
+    model = bikelanetbl
+    form_class = BikelaneForm
+    template_name = 'atdb/add_maindb.html'  # The template for the form
+    success_url = reverse_lazy('maindb')
 
 def hist(request, tag):
     que = None
