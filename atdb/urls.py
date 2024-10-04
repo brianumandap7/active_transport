@@ -2,11 +2,8 @@ from django.urls import path
 from . import views
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-<<<<<<< HEAD
 from .views import ATDBView, TowTblView, RTView, ATView, RSView, CLView, FSView, MView, towDB, regDB, areDB, roaDB, claDB, funDB, bikDB, add_tow, add_rt, add_at, add_rs, add_cl, add_fs, add_maindb
-=======
-from .views import ATDBView, TowTblView, RTView, ATView, RSView, CLView, FSView, MView, towDB, regDB, areDB, roaDB, claDB, funDB, bikDB, add_tow, add_rt
->>>>>>> fcba6d96ad37a22c78158be7ed842d4d9ffd28ab
+
 
 urlpatterns = [
     path('', staff_member_required(ATDBView.as_view()), name='atdb'),
@@ -34,19 +31,10 @@ urlpatterns = [
     path('hist/<str:tag>/', views.hist, name='hist'),
     path('add_tow/',  add_tow.as_view(), name='add_tow'),
     path('add_rt/',  add_rt.as_view(), name='add_rt'),
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1fd12c7dea477d1a49f57308368cb6e633db56ec
     path('add_at/',  add_at.as_view(), name='add_at'),
     path('add_rs/',  add_rs.as_view(), name='add_rs'),
     path('add_cl/',  add_cl.as_view(), name='add_cl'),
     path('add_fs/',  add_fs.as_view(), name='add_fs'),
     path('add_maindb/',  add_maindb.as_view(), name='add_maindb'),
-<<<<<<< HEAD
-=======
->>>>>>> fcba6d96ad37a22c78158be7ed842d4d9ffd28ab
 ]
-=======
-]
->>>>>>> 1fd12c7dea477d1a49f57308368cb6e633db56ec
+
