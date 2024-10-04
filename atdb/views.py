@@ -208,6 +208,15 @@ class add_tow(CreateView):
     template_name = 'atdb/add_tow.html'  # The template for the form
     success_url = reverse_lazy('towtbl')
 
+<<<<<<< HEAD
+=======
+
+class add_rt(CreateView):
+    model = Region
+    form_class = RegionForm
+    template_name = 'atdb/add_rt.html'  # The template for the form
+    success_url = reverse_lazy('rt')
+>>>>>>> fcba6d96ad37a22c78158be7ed842d4d9ffd28ab
 
 class add_rt(CreateView):
     model = Region

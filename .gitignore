@@ -2,4 +2,9 @@ node_modules
 .DS_Store
 *.sqlite3
 *db.sqlite3
+<<<<<<< HEAD
 media
+=======
+media
+
+>>>>>>> fcba6d96ad37a22c78158be7ed842d4d9ffd28ab
