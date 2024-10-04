@@ -208,12 +208,33 @@ class add_tow(CreateView):
     template_name = 'atdb/add_tow.html'  # The template for the form
     success_url = reverse_lazy('towtbl')
 
+<<<<<<< HEAD
 
 class add_rt(CreateView):
     model = Region
     form_class = RegionForm
     template_name = 'atdb/add_rt.html'  # The template for the form
     success_url = reverse_lazy('rt')
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> 1fd12c7dea477d1a49f57308368cb6e633db56ec
+class add_rt(CreateView):
+    model = Region
+    form_class = RegionForm
+    template_name = 'atdb/add_rt.html'  # The template for the form
+    success_url = reverse_lazy('rt')
+>>>>>>> fcba6d96ad37a22c78158be7ed842d4d9ffd28ab
+
+class add_rt(CreateView):
+    model = Region
+    form_class = RegionForm
+    template_name = 'atdb/add_rt.html'  # The template for the form
+    success_url = reverse_lazy('rt')
+<<<<<<< HEAD
 
 class add_at(CreateView):
     model = BikeArea
@@ -221,6 +242,19 @@ class add_at(CreateView):
     template_name = 'atdb/add_at.html'  # The template for the form
     success_url = reverse_lazy('at')
 
+=======
+>>>>>>> 4eddf0b09b240a1111a2dac7613ccef835aea730
+
+class add_at(CreateView):
+    model = BikeArea
+    form_class = BikeAreaForm
+    template_name = 'atdb/add_at.html'  # The template for the form
+    success_url = reverse_lazy('at')
+
+<<<<<<< HEAD
+=======
+>>>>>>> 1fd12c7dea477d1a49f57308368cb6e633db56ec
+>>>>>>> 4eddf0b09b240a1111a2dac7613ccef835aea730
 class add_rs(CreateView):
     model = RoadSection
     form_class = RoadSectionForm
