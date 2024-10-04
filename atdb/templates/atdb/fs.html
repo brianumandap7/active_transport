@@ -46,11 +46,11 @@
                 <td>{{items.FundSource}}</td>
                 <td>
                     {% if has_permission %}
-                    <a href="/atdb/edit_fundsources/{{items.FundSource_id}}" class="btn btn-warning">Edit Item</a>
+                    <a href="/atdb/edit_fundsources/{{items.FundSource_id}}" class="btn btn-warning btn-sm">Edit Item</a>
                     {% else %}
                     <button type="button" class="btn btn-warning mbtn btn-sm" disabled>Edit</button>
                     {% endif %}
-                    <a href="#" class="btn btn-danger">Archive Item</a>
+                    <a href="#" class="btn btn-danger btn-sm">Archive Item</a>
                 </td>
             </tr>
             {% endfor %}
