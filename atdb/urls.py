@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from .views import ATDBView, TowTblView, RTView, ATView, RSView, CLView, FSView, MView, towDB, regDB, areDB, roaDB, claDB, funDB, bikDB, add_tow, add_rt
+from .views import ATDBView, TowTblView, RTView, ATView, RSView, CLView, FSView, MView, towDB, regDB, areDB, roaDB, claDB, funDB, bikDB, add_tow, add_rt, add_at, add_rs, add_cl, add_fs, add_maindb
 
 urlpatterns = [
     path('', staff_member_required(ATDBView.as_view()), name='atdb'),
@@ -30,4 +30,9 @@ urlpatterns = [
     path('hist/<str:tag>/', views.hist, name='hist'),
     path('add_tow/',  add_tow.as_view(), name='add_tow'),
     path('add_rt/',  add_rt.as_view(), name='add_rt'),
+    path('add_at/',  add_at.as_view(), name='add_at'),
+    path('add_rs/',  add_rs.as_view(), name='add_rs'),
+    path('add_cl/',  add_cl.as_view(), name='add_cl'),
+    path('add_fs/',  add_fs.as_view(), name='add_fs'),
+    path('add_maindb/',  add_maindb.as_view(), name='add_maindb'),
 ]
