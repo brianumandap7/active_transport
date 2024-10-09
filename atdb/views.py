@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from .forms import TypeofworkForm, RegionForm, BikeAreaForm, RoadSectionForm, BikeClassForm, FundSourceForm, BikelaneForm, ExcelUploadForm
+from .forms import TypeofworkForm, RegionForm, BikeAreaForm, RoadSectionForm, BikeClassForm, FundSourceForm, BikelaneForm, ExcelUploadForm, UploadFileForm
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.utils import timezone
@@ -534,6 +534,96 @@ class BikelaneBulkUpload(View):
                 )
                 # Save the instance to the database
                 bikelane_instance.save()
+
+            return JsonResponse({"message": "Bulk upload successful!"})
+
+        return JsonResponse({"error": "Invalid form"}, status=400)
+
+class RoadSectionBulkUpload(View):
+    def get(self, request):
+        form = ExcelUploadForm()  # Create an instance of your form
+        return render(request, 'atdb/roadsection_bulk_upload.html', {'form': form})  # Adjust template name as needed
+
+    def post(self, request):
+        form = ExcelUploadForm(request.POST, request.FILES)
+        if form.is_valid():  # Check if the form is valid
+            excel_file = request.FILES['file']  # Get the uploaded file
+
+            # Read the Excel file, specifying the second sheet (index 1)
+            df = pd.read_excel(excel_file, sheet_name=1, header=None, skiprows=1)
+
+            # Iterate over the rows in the DataFrame
+            for _, row in df.iterrows():
+                # Use the column index to access data
+                road_section_instance = RoadSection(
+                    RoadSection=row[0]  # Adjust the index if the column order changes
+                )
+                # Save the instance to the database
+                road_section_instance.save()
+
+            return JsonResponse({"message": "Bulk upload successful!"})
+
+        return JsonResponse({"error": "Invalid form"}, status=400)
+
+class BikeAreaBulkUpload(View):
+    def get(self, request):
+        form = ExcelUploadForm()  # Create an instance of your form
+        return render(request, 'atdb/bikearea_bulk_upload.html', {'form': form})  # Adjust template name as needed
+
+    def post(self, request):
+        form = ExcelUploadForm(request.POST, request.FILES)
+        if form.is_valid():  # Check if the form is valid
+            excel_file = request.FILES['file']  # Get the uploaded file
+
+            # Read the Excel file, specifying the third sheet (index 2)
+            df = pd.read_excel(excel_file, sheet_name=2, header=None, skiprows=1)
+
+            # Print the DataFrame to debug
+            print(df)
+
+            # Iterate over the rows in the DataFrame
+            for _, row in df.iterrows():
+                bike_area_name = row[0]  # Assuming the first column has the bike area name
+                if pd.notna(bike_area_name):  # Check if the value is not NaN
+                    bike_area_instance = BikeArea(
+                        BikeArea=bike_area_name
+                    )
+                    bike_area_instance.save()
+                    print(f"Saved BikeArea: {bike_area_instance.BikeArea}")
+                else:
+                    print(f"Skipped row with NaN value: {row}")
+
+            return JsonResponse({"message": "Bulk upload successful!"})
+
+        return JsonResponse({"error": "Invalid form"}, status=400)
+
+class RegionBulkUpload(View):
+    def get(self, request):
+        form = ExcelUploadForm()  # Create an instance of your form
+        return render(request, 'atdb/region_bulk_upload.html', {'form': form})  # Adjust template name as needed
+
+    def post(self, request):
+        form = ExcelUploadForm(request.POST, request.FILES)
+        if form.is_valid():  # Check if the form is valid
+            excel_file = request.FILES['file']  # Get the uploaded file
+
+            # Read the Excel file, specifying the third sheet (index 2)
+            df = pd.read_excel(excel_file, sheet_name=5, header=None, skiprows=1)
+
+            # Print the DataFrame to debug
+            print(df)
+
+            # Iterate over the rows in the DataFrame
+            for _, row in df.iterrows():
+                region = row[0]  # Assuming the first column has the bike area name
+                if pd.notna(region):  # Check if the value is not NaN
+                    region = Region(
+                        Region=region
+                    )
+                    region.save()
+                    print(f"Saved Region: {region.Region}")
+                else:
+                    print(f"Skipped row with NaN value: {row}")
 
             return JsonResponse({"message": "Bulk upload successful!"})
 

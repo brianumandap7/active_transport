@@ -4,6 +4,9 @@ from .models import Typeofwork, Region, BikeArea, RoadSection, BikeClass, FundSo
 class ExcelUploadForm(forms.Form):
     file = forms.FileField()
 
+class UploadFileForm(forms.Form): #this is for the road section model
+    file = forms.FileField()
+
 class TypeofworkForm(forms.ModelForm):
     class Meta:
         model = Typeofwork

@@ -32,7 +32,7 @@
             </div>
         {% endfor %}
     {% endif %}
-    <h2>Road Section Table {% if can_view %}<a href="/admin/atdb/roadsection/" class="btn btn-secondary"  target="__blank">View in console</a>{% else %}<button type="button" class="btn btn-secondary" disabled>View in console</button>{% endif %} {% if can_add %}<a href="/atdb/add_rs" class="btn btn-info">Add Item</a>{% else %}<button type="button" class="btn btn-info" disabled>Add Item</button>{% endif %}</h2>
+    <h2>Road Section Table {% if can_view %}<a href="/admin/atdb/roadsection/" class="btn btn-secondary"  target="__blank">View in console</a>{% else %}<button type="button" class="btn btn-secondary" disabled>View in console</button>{% endif %} {% if can_add %}<a href="/atdb/add_rs" class="btn btn-info">Add Item</a> <a href="/atdb/roadsection-bulk-upload" class="btn btn-info">Bulk Upload</a>{% else %}<button type="button" class="btn btn-info" disabled>Add Item</button>{% endif %}</h2>
     <table id="roadSectionTable" class="table table-striped table-bordered">
         <thead class="thead-dark">
             <tr>

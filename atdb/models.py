@@ -42,11 +42,6 @@ class BikeArea(models.Model):
 	BikeArea_id = models.AutoField(primary_key=True)
 	BikeArea = models.CharField(max_length=255, blank=True, null=True)
 
-	class Meta:
-		permissions = [
-			("edit_bikearea", "Can change bike area"),
-		]
-
 	def __str__(self):
 		return self.BikeArea
 
