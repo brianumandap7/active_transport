@@ -29,6 +29,8 @@ from django.views import View  # Ensure this is imported
 
 import pandas as pd
 
+from datetime import datetime
+
 
 #edit type of work
 def edit_typeofwork(request, tag):
@@ -481,7 +483,7 @@ class MView(ListView):
         return super().handle_no_permission()
 
     def get_queryset(self):
-        return super().get_queryset()
+        return super().get_queryset().order_by('Bikelane_id')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -502,37 +504,56 @@ class MView(ListView):
 
 class BikelaneBulkUpload(View):
     def get(self, request):
-        form = ExcelUploadForm()  # Create an instance of your form
-        return render(request, 'atdb/bikelane_bulk_upload.html', {'form': form})  # Adjust template name as needed
+        form = ExcelUploadForm()
+        return render(request, 'atdb/bikelane_bulk_upload.html', {'form': form})
 
     def post(self, request):
         form = ExcelUploadForm(request.POST, request.FILES)
-        if form.is_valid():  # Check if the form is valid
-            excel_file = request.FILES['file']  # Get the uploaded file
-            
-            # Read the Excel file
+        if form.is_valid():
+            excel_file = request.FILES['file']
+
+            # Read the Excel file with custom column names
             df = pd.read_excel(excel_file, sheet_name=6, header=None, skiprows=1)
+            df.columns = [
+                "Bikelane_Code", "Typeofwork_ID", "Region_ID", "BikeArea_ID",
+                "RoadSection_ID", "Length", "StartPointX", "StartPointY",
+                "EndPointX", "EndPointY", "BikeClass_ID", "BikeDate",
+                "FundSource_ID", "Remarks", "Province"
+            ]
+
+            df['Remarks'].fillna('No remarks', inplace=True)
+            df['Remarks'].replace('', 'No remarks', inplace=True)
 
             # Iterate over the rows in the DataFrame
-            for index, row in df.iterrows():
+            for _, row in df.iterrows():
+                # Handle BikeDate: Convert to string in ISO format or set to None if invalid
+                bike_date = row['BikeDate']
+                if pd.notnull(bike_date) and isinstance(bike_date, datetime):
+                    # Convert valid datetime to string format
+                    bike_date = bike_date.strftime('%Y-%m-%d')
+                else:
+                    # Set invalid or missing dates to None
+                    bike_date = None
+                
+
                 # Create a new bikelanetbl instance
                 bikelane_instance = bikelanetbl(
                     Bikelane_Code=row['Bikelane_Code'],
-                    Typeofwork_id=row['Typeofwork_ID'],  # ForeignKey ID
-                    Region_id=row['Region_ID'],            # ForeignKey ID
-                    BikeArea_id=row['BikeArea_ID'],        # ForeignKey ID
-                    RoadSection_id=row['RoadSection_ID'],  # ForeignKey ID
+                    Typeofwork_id=row['Typeofwork_ID'],
+                    Region_id=row['Region_ID'],
+                    BikeArea_id=row['BikeArea_ID'],
+                    RoadSection_id=row['RoadSection_ID'],
                     Length=row['Length'],
                     StartPointX=row['StartPointX'],
                     StartPointY=row['StartPointY'],
                     EndPointX=row['EndPointX'],
                     EndPointY=row['EndPointY'],
-                    BikeClass_id=row['BikeClass_ID'],      # ForeignKey ID
-                    BikeDate=row['BikeDate'],
-                    FundSource_id=row['FundSource_ID'],    # ForeignKey ID
-                    Remarks=row['Remarks']
+                    BikeClass_id=row['BikeClass_ID'],
+                    BikeDate=bike_date,  # Only valid dates or None
+                    FundSource_id=row['FundSource_ID'],
+                    Remarks=row['Remarks'],
+                    Province=row['Province']
                 )
-                # Save the instance to the database
                 bikelane_instance.save()
 
             return JsonResponse({"message": "Bulk upload successful!"})

@@ -92,4 +92,5 @@ class BikelaneForm(forms.ModelForm):
             'BikeDate': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'FundSource': forms.Select(attrs={'class': 'form-control'}),
             'Remarks': forms.TextInput(attrs={'class': 'form-control'}),
+            'Province': forms.TextInput(attrs={'class': 'form-control'}),
         }
