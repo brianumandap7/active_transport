@@ -511,7 +511,7 @@ class BikelaneBulkUpload(View):
             excel_file = request.FILES['file']  # Get the uploaded file
             
             # Read the Excel file
-            df = pd.read_excel(excel_file)
+            df = pd.read_excel(excel_file, sheet_name=6, header=None, skiprows=1)
 
             # Iterate over the rows in the DataFrame
             for index, row in df.iterrows():
