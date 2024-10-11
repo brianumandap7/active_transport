@@ -31,6 +31,8 @@ import pandas as pd
 
 from datetime import datetime
 
+from .serializers import BikelaneTblSerializer
+
 
 #edit type of work
 def edit_typeofwork(request, tag):
@@ -695,7 +697,9 @@ class funDB(APIView):
 class bikDB(APIView):
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
+
     def get(self, request, format=None):
-        prog = list(bikelanetbl.objects.values())
-        return Response(prog)
+        prog = bikelanetbl.objects.all()
+        serializer = BikelaneTblSerializer(prog, many=True)
+        return Response(serializer.data)
 
