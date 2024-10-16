@@ -4,32 +4,32 @@ from .models import bikelanetbl, Typeofwork, Region, BikeArea, RoadSection, Bike
 class TypeofworkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Typeofwork
-        fields = '__all__'
+        fields = ['Typeofwork']
 
 class RegionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
-        fields = '__all__'
+        fields = ['Region']
 
 class BikeAreaSerializer(serializers.ModelSerializer):
     class Meta:
         model = BikeArea
-        fields = '__all__'
+        fields = ['BikeArea']
 
 class RoadSectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = RoadSection
-        fields = '__all__'
+        fields = ['RoadSection']
 
 class BikeClassSerializer(serializers.ModelSerializer):
     class Meta:
         model = BikeClass
-        fields = '__all__'
+        fields = ['BikeClass']
 
 class FundSourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = FundSource
-        fields = '__all__'
+        fields = ['FundSource']
 
 class BikelaneTblSerializer(serializers.ModelSerializer):
     Typeofwork = TypeofworkSerializer()

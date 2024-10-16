@@ -485,7 +485,7 @@ class MView(ListView):
         return super().handle_no_permission()
 
     def get_queryset(self):
-        return super().get_queryset().order_by('Bikelane_id')
+        return super().get_queryset().filter(status=1).order_by('Bikelane_id')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -699,7 +699,7 @@ class bikDB(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
-        prog = bikelanetbl.objects.all()
+        prog = bikelanetbl.objects.filter(status = 1)
         serializer = BikelaneTblSerializer(prog, many=True)
         return Response(serializer.data)
 

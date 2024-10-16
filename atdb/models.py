@@ -125,6 +125,8 @@ class bikelanetbl(models.Model):
     Remarks = models.CharField(max_length=250, blank=True, null=True)
     Province = models.CharField(max_length=250, blank=True, null=True)
 
+    status = models.IntegerField(default=1, blank=True, null=True)
+
     def __str__(self):
         return str(self.Bikelane_id)+" "+str(self.Bikelane_Code)
 
