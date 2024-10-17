@@ -146,10 +146,11 @@
         <div>
             <a href="https://app.powerbi.com/reportEmbed?reportId=8e6318fd-07fd-46b9-ae87-09e1813d4296&autoAuth=true&ctid=9f14d677-fda8-48d4-bf91-80c492adf97e" target="_blank">Dashboard</a>
             {% if request.user.is_superuser %}
-            <a href="#">Reports</a>
-            {% endif %}
+            <!-- <a href="#">Reports</a>-->
             <a href="/admin/auth/user/">Settings</a>
-            <a href="#">Help</a>
+            <!-- <a href="#">Help</a> -->
+            {% endif %}
+            
         </div>
     </div>
 
