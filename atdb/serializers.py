@@ -52,7 +52,6 @@ class BikelaneTblSerializer(serializers.ModelSerializer):
             'BikeDate',
             'Remarks',
             'Province',
-            'status',
         ]
     def to_representation(self, instance):
         representation = super().to_representation(instance)

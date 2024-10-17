@@ -84,6 +84,8 @@
                         <center>
                             {% if has_permission %}
                             <a href="/atdb/edit_maintbl/{{items.Bikelane_id}}" class="btn btn-warning mbtn btn-sm">Edit</a>
+                            <br>
+                            <a href="/atdb/del_maindb/{{items.Bikelane_id}}" class="btn btn-danger mbtn btn-sm">Archive</a>
                             {% else %}
                             <button type="button" class="btn btn-warning mbtn btn-sm" disabled>Edit</button>
 

@@ -39,10 +39,10 @@
                         <tr>
                             <td>{{ forloop.counter }}</td>  <!-- Counter for row numbering -->
                             <td>{{ item.id }}</td>          <!-- Example field: ID -->
-                            <td>{{ item.old_value }}</td>       <!-- Example field: Action -->
-                            <td>{{ item.new_value }}</td>       <!-- Example field: Action -->
-                            <td>{{ item.edited_by }}</td>         <!-- Example field: User -->
-                            <td>{{ item.timestamp }}</td>    <!-- Example field: Timestamp -->
+                            <td>{{ item.old_value }} {{item.old_data}}</td>       <!-- Example field: Action -->
+                            <td>{{ item.new_value }} {{item.new_data}}</td>       <!-- Example field: Action -->
+                            <td>{{ item.edited_by }} {{ item.changed_by }}</td>         <!-- Example field: User -->
+                            <td>{{ item.timestamp }} {{ item.change_date }}</td>    <!-- Example field: Timestamp -->
                         </tr>
                         {% endfor %}
                     </tbody>

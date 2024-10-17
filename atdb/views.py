@@ -260,6 +260,31 @@ class add_maindb(CreateView):
     template_name = 'atdb/add_maindb.html'  # The template for the form
     success_url = reverse_lazy('maindb')
 
+def del_maindb(request, tag):
+    # Get the bikelanetbl instance with the specified Bikelane_id or return 404 if not found
+    bikelane = get_object_or_404(bikelanetbl, Bikelane_id=tag)
+    
+    # Update the status field to 0
+
+    old_data = ""
+    new_data = f"Archived {bikelane.Bikelane_Code}"
+
+    bikelane.status = 0
+    bikelane.save()
+
+
+    BikelaneAuditLog.objects.create(
+        bikelane=bikelane,
+        changed_by=request.user,
+        change_date=timezone.now(),
+        action="Updated",
+        old_data=old_data,
+        new_data=new_data
+    )
+    
+    # Optionally, redirect to a success page or return a response
+    return redirect('/atdb/maindb')
+
 def hist(request, tag):
     que = None
 

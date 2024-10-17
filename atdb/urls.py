@@ -39,5 +39,7 @@ urlpatterns = [
     path('roadsection-bulk-upload/', RoadSectionBulkUpload.as_view(), name='roadsection_bulk_upload'),
     path('area-bulk-upload/', BikeAreaBulkUpload.as_view(), name='area-bulk-upload'),
     path('region-bulk-upload/', RegionBulkUpload.as_view(), name='region-bulk-upload'),
+
+    path('del_maindb/<int:tag>/',  views.del_maindb, name='del_maindb'),
 ]
 
