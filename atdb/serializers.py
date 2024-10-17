@@ -32,13 +32,34 @@ class FundSourceSerializer(serializers.ModelSerializer):
         fields = ['FundSource']
 
 class BikelaneTblSerializer(serializers.ModelSerializer):
-    Typeofwork = TypeofworkSerializer()
-    Region = RegionSerializer()
-    BikeArea = BikeAreaSerializer()
-    RoadSection = RoadSectionSerializer()
-    BikeClass = BikeClassSerializer()
-    FundSource = FundSourceSerializer()
-
+    
     class Meta:
         model = bikelanetbl
-        fields = '__all__'
+        fields = [
+            'Bikelane_id',
+            'Typeofwork',
+            'Region',
+            'BikeArea',
+            'RoadSection',
+            'BikeClass',
+            'FundSource',
+            'Bikelane_Code',
+            'Length',
+            'StartPointX',
+            'StartPointY',
+            'EndPointX',
+            'EndPointY',
+            'BikeDate',
+            'Remarks',
+            'Province',
+            'status',
+        ]
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['Typeofwork'] = instance.Typeofwork.Typeofwork
+        representation['Region'] = instance.Region.Region
+        representation['BikeArea'] = instance.BikeArea.BikeArea
+        representation['RoadSection'] = instance.RoadSection.RoadSection
+        representation['BikeClass'] = instance.BikeClass.BikeClass
+        representation['FundSource'] = instance.FundSource.FundSource
+        return representation

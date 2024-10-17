@@ -558,7 +558,7 @@ class BikelaneBulkUpload(View):
                 )
                 bikelane_instance.save()
 
-            return JsonResponse({"message": "Bulk upload successful!"})
+            return redirect('/atdb/maindb')
 
         return JsonResponse({"error": "Invalid form"}, status=400)
 
@@ -584,7 +584,7 @@ class RoadSectionBulkUpload(View):
                 # Save the instance to the database
                 road_section_instance.save()
 
-            return JsonResponse({"message": "Bulk upload successful!"})
+            return redirect('/atdb/rs')
 
         return JsonResponse({"error": "Invalid form"}, status=400)
 
@@ -616,7 +616,7 @@ class BikeAreaBulkUpload(View):
                 else:
                     print(f"Skipped row with NaN value: {row}")
 
-            return JsonResponse({"message": "Bulk upload successful!"})
+            return redirect('/atdb/at')
 
         return JsonResponse({"error": "Invalid form"}, status=400)
 
@@ -648,7 +648,7 @@ class RegionBulkUpload(View):
                 else:
                     print(f"Skipped row with NaN value: {row}")
 
-            return JsonResponse({"message": "Bulk upload successful!"})
+            return redirect('/atdb/rt')
 
         return JsonResponse({"error": "Invalid form"}, status=400)
 
