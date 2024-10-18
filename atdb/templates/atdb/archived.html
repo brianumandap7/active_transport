@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="{% static 'basetemp/favicondotr32.png' %}"/>
-    <title>MainDB | Active Transport Dashboard</title>
+    <title>Archived MainDB | Active Transport Dashboard</title>
     <!-- Bootstrap 4 CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- DataTables CSS -->
@@ -40,7 +40,7 @@
         {% endfor %}
     {% endif %}
 
-    <h2>Main Bike Lane Table {% if can_view %}<a href="/admin/atdb/bikelanetbl/" class="btn btn-secondary" target="_blank">View in console</a>{% else %}<button type="button" class="btn btn-secondary" disabled>View in console</button>{% endif %} {% if can_add %}<a href="/atdb/add_maindb" class="btn btn-info">Add Item</a> <a href="/atdb/add_bulk" class="btn btn-info">Add Bulk</a>{% else %}<button type="button" class="btn btn-info" disabled>Add Item</button>{% endif %} {% if user.is_superuser %}<a href="/atdb/maindb_archived" class="btn btn-danger">Show Archived</a>{% endif %}</h2>
+    <h2><small>[Archived]</small>Main Bike Lane Table</h2>
     
         <table id="mainBikeLaneTable" class="table table-striped table-bordered text-sm">
             <thead class="thead-dark">
@@ -82,14 +82,8 @@
                     <td>{{items.Province}}</td>
                     <td>
                         <center>
-                            {% if has_permission %}
-                            <a href="/atdb/edit_maintbl/{{items.Bikelane_id}}" class="btn btn-warning mbtn btn-sm">Edit</a>
-                            <br>
-                            <a href="/atdb/del_maindb/{{items.Bikelane_id}}" class="btn btn-danger mbtn btn-sm">Archive</a>
-                            {% else %}
-                            <button type="button" class="btn btn-warning mbtn btn-sm" disabled>Edit</button>
-
-                            {% endif %}
+                            
+                            <a href="/atdb/un_maindb/{{items.Bikelane_id}}" class="btn btn-danger mbtn btn-sm">Unarchive</a>
                             
                         </center>
                     </td>
@@ -98,7 +92,7 @@
             </tbody>
         </table>
     
-    <a href="/atdb" class="btn btn-primary btbl">Back</a>
+    <a href="/atdb/maindb" class="btn btn-primary btbl">Back</a>
 </div>
 
 <!-- jQuery -->

@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from .views import ATDBView, TowTblView, RTView, ATView, RSView, CLView, FSView, MView, towDB, regDB, areDB, roaDB, claDB, funDB, bikDB, add_tow, add_rt, add_at, add_rs, add_cl, add_fs, add_maindb, BikelaneBulkUpload, RoadSectionBulkUpload, BikeAreaBulkUpload, RegionBulkUpload
+from .views import ATDBView, TowTblView, RTView, ATView, RSView, CLView, FSView, MView, towDB, regDB, areDB, roaDB, claDB, funDB, bikDB, add_tow, add_rt, add_at, add_rs, add_cl, add_fs, add_maindb, BikelaneBulkUpload, RoadSectionBulkUpload, BikeAreaBulkUpload, RegionBulkUpload, MView_archived
 
 urlpatterns = [
     path('', staff_member_required(ATDBView.as_view()), name='atdb'),
@@ -13,6 +13,7 @@ urlpatterns = [
     path('cl/', staff_member_required(CLView.as_view()), name='cl'),
     path('fs/', staff_member_required(FSView.as_view()), name='fs'),
     path('maindb/', staff_member_required(MView.as_view()), name='maindb'),
+    path('maindb_archived/', staff_member_required(MView_archived.as_view()), name='maindb_archived'),
     path('towDB/', views.towDB.as_view(), name='towDB'),
     path('regDB/', views.regDB.as_view(), name='regDB'),
     path('areDB/', views.areDB.as_view(), name='areDB'),
@@ -41,5 +42,6 @@ urlpatterns = [
     path('region-bulk-upload/', RegionBulkUpload.as_view(), name='region-bulk-upload'),
 
     path('del_maindb/<int:tag>/',  views.del_maindb, name='del_maindb'),
+    path('un_maindb/<int:tag>/',  views.un_maindb, name='un_maindb'),
 ]
 

@@ -285,6 +285,31 @@ def del_maindb(request, tag):
     # Optionally, redirect to a success page or return a response
     return redirect('/atdb/maindb')
 
+def un_maindb(request, tag):
+    # Get the bikelanetbl instance with the specified Bikelane_id or return 404 if not found
+    bikelane = get_object_or_404(bikelanetbl, Bikelane_id=tag)
+    
+    # Update the status field to 0
+
+    old_data = ""
+    new_data = f"Unarchived {bikelane.Bikelane_Code}"
+
+    bikelane.status = 1
+    bikelane.save()
+
+
+    BikelaneAuditLog.objects.create(
+        bikelane=bikelane,
+        changed_by=request.user,
+        change_date=timezone.now(),
+        action="Updated",
+        old_data=old_data,
+        new_data=new_data
+    )
+    
+    # Optionally, redirect to a success page or return a response
+    return redirect('/atdb/maindb')
+
 def hist(request, tag):
     que = None
 
@@ -511,6 +536,35 @@ class MView(ListView):
 
     def get_queryset(self):
         return super().get_queryset().filter(status=1).order_by('Bikelane_id')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Use the defined app_label
+        model_name = self.model._meta.model_name  # e.g., 'bikelanetbl'
+        permission_string = f'{self.app_label}.change_{model_name}'  # Construct the permission string
+        add_permission_string = f'{self.app_label}.add_{model_name}'
+        view_permission_string = f'{self.app_label}.view_{model_name}'
+
+        # Check if the user has the constructed permission
+        context['has_permission'] = self.request.user.has_perm(permission_string)
+        context['can_add'] = self.request.user.has_perm(add_permission_string)
+        context['can_view'] = self.request.user.has_perm(view_permission_string)
+        context['user_permissions'] = self.request.user.get_all_permissions()
+        
+        return context
+
+class MView_archived(ListView):
+    model = bikelanetbl
+    template_name = 'atdb/archived.html'
+    context_object_name = 'maindb'
+    app_label = 'atdb'  # Define the app label here
+
+    def handle_no_permission(self):
+        return super().handle_no_permission()
+
+    def get_queryset(self):
+        return super().get_queryset().filter(status=0).order_by('Bikelane_id')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
