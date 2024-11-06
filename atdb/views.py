@@ -731,6 +731,70 @@ class RegionBulkUpload(View):
 
         return JsonResponse({"error": "Invalid form"}, status=400)
 
+class ClassBulkUpload(View):
+    def get(self, request):
+        form = ExcelUploadForm()  # Create an instance of your form
+        return render(request, 'atdb/class_bulk_upload.html', {'form': form})  # Adjust template name as needed
+
+    def post(self, request):
+        form = ExcelUploadForm(request.POST, request.FILES)
+        if form.is_valid():  # Check if the form is valid
+            excel_file = request.FILES['file']  # Get the uploaded file
+
+            # Read the Excel file, specifying the third sheet (index 2)
+            df = pd.read_excel(excel_file, sheet_name=3, header=None, skiprows=1)
+
+            # Print the DataFrame to debug
+            print(df)
+
+            # Iterate over the rows in the DataFrame
+            for _, row in df.iterrows():
+                classt = row[0]  # Assuming the first column has the bike area name
+                if pd.notna(classt):  # Check if the value is not NaN
+                    classt = BikeClass(
+                        BikeClass=classt
+                    )
+                    classt.save()
+                    print(f"Saved Class: {classt.BikeClass}")
+                else:
+                    print(f"Skipped row with NaN value: {row}")
+
+            return redirect('/atdb/cl')
+
+        return JsonResponse({"error": "Invalid form"}, status=400)
+
+class FundBulkUpload(View):
+    def get(self, request):
+        form = ExcelUploadForm()  # Create an instance of your form
+        return render(request, 'atdb/fund_bulk_upload.html', {'form': form})  # Adjust template name as needed
+
+    def post(self, request):
+        form = ExcelUploadForm(request.POST, request.FILES)
+        if form.is_valid():  # Check if the form is valid
+            excel_file = request.FILES['file']  # Get the uploaded file
+
+            # Read the Excel file, specifying the third sheet (index 2)
+            df = pd.read_excel(excel_file, sheet_name=4, header=None, skiprows=1)
+
+            # Print the DataFrame to debug
+            print(df)
+
+            # Iterate over the rows in the DataFrame
+            for _, row in df.iterrows():
+                fs = row[0]  # Assuming the first column has the bike area name
+                if pd.notna(fs):  # Check if the value is not NaN
+                    fs = FundSource(
+                        FundSource=fs
+                    )
+                    fs.save()
+                    print(f"Saved Fund Source: {fs.FundSource}")
+                else:
+                    print(f"Skipped row with NaN value: {row}")
+
+            return redirect('/atdb/fs')
+
+        return JsonResponse({"error": "Invalid form"}, status=400)
+
 class towDB(APIView):
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]

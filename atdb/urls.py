@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from .views import ATDBView, TowTblView, RTView, ATView, RSView, CLView, FSView, MView, towDB, regDB, areDB, roaDB, claDB, funDB, bikDB, add_tow, add_rt, add_at, add_rs, add_cl, add_fs, add_maindb, BikelaneBulkUpload, RoadSectionBulkUpload, BikeAreaBulkUpload, RegionBulkUpload, MView_archived
+from .views import ATDBView, TowTblView, RTView, ATView, RSView, CLView, FSView, MView, towDB, regDB, areDB, roaDB, claDB, funDB, bikDB, add_tow, add_rt, add_at, add_rs, add_cl, add_fs, add_maindb, BikelaneBulkUpload, RoadSectionBulkUpload, BikeAreaBulkUpload, RegionBulkUpload, MView_archived, ClassBulkUpload, FundBulkUpload
 
 urlpatterns = [
     path('', staff_member_required(ATDBView.as_view()), name='atdb'),
@@ -40,7 +40,8 @@ urlpatterns = [
     path('roadsection-bulk-upload/', RoadSectionBulkUpload.as_view(), name='roadsection_bulk_upload'),
     path('area-bulk-upload/', BikeAreaBulkUpload.as_view(), name='area-bulk-upload'),
     path('region-bulk-upload/', RegionBulkUpload.as_view(), name='region-bulk-upload'),
-
+    path('class-bulk-upload/', ClassBulkUpload.as_view(), name='class-bulk-upload'),
+    path('fund-bulk-upload/', FundBulkUpload.as_view(), name='fund-bulk-upload'),
     path('del_maindb/<int:tag>/',  views.del_maindb, name='del_maindb'),
     path('un_maindb/<int:tag>/',  views.un_maindb, name='un_maindb'),
 ]
