@@ -1,5 +1,6 @@
 from django import forms
 from .models import Typeofwork, Region, BikeArea, RoadSection, BikeClass, FundSource, bikelanetbl
+from django.contrib.auth.forms import PasswordChangeForm
 
 class ExcelUploadForm(forms.Form):
     file = forms.FileField()
@@ -83,14 +84,31 @@ class BikelaneForm(forms.ModelForm):
             'Region': forms.Select(attrs={'class': 'form-control'}),
             'BikeArea': forms.Select(attrs={'class': 'form-control'}),
             'RoadSection': forms.Select(attrs={'class': 'form-control'}),
-            'Length': forms.NumberInput(attrs={'class': 'form-control'}),
-            'StartPointX': forms.NumberInput(attrs={'class': 'form-control'}),
-            'StartPointY': forms.NumberInput(attrs={'class': 'form-control'}),
-            'EndPointX': forms.NumberInput(attrs={'class': 'form-control'}),
-            'EndPointY': forms.NumberInput(attrs={'class': 'form-control'}),
+            'Length': forms.TextInput(attrs={'class': 'form-control'}),
+            'StartPointX': forms.TextInput(attrs={'class': 'form-control'}),
+            'StartPointY': forms.TextInput(attrs={'class': 'form-control'}),
+            'EndPointX': forms.TextInput(attrs={'class': 'form-control'}),
+            'EndPointY': forms.TextInput(attrs={'class': 'form-control'}),
             'BikeClass': forms.Select(attrs={'class': 'form-control'}),
             'BikeDate': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'FundSource': forms.Select(attrs={'class': 'form-control'}),
             'Remarks': forms.TextInput(attrs={'class': 'form-control'}),
             'Province': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+class UpdatePasswordForm(PasswordChangeForm):
+    old_password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        label="Old Password"
+    )
+    new_password1 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        label="New Password"
+    )
+    new_password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        label="Confirm New Password"
+    )
+    
+    class Meta:
+        fields = ['old_password', 'new_password1', 'new_password2']

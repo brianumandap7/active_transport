@@ -190,7 +190,9 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div>
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiOTczMzYwNzktY2Q5YS00OWNmLWJmYjYtYTU1ZjllZmMyZDVlIiwidCI6IjlmMTRkNjc3LWZkYTgtNDhkNC1iZjkxLTgwYzQ5MmFkZjk3ZSIsImMiOjEwfQ%3D%3D" target="_blank">Dashboard</a>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiOTczMzYwNzktY2Q5YS00OWNmLWJmYjYtYTU1ZjllZmMyZDVlIiwidCI6IjlmMTRkNjc3LWZkYTgtNDhkNC1iZjkxLTgwYzQ5MmFkZjk3ZSIsImMiOjEwfQ%3D%3D&pageName=5790cad0107553001607" target="_blank">Dashboard</a>
+
+            <a href="/atdb/upass" target="_blank">Account Settings</a>
             {% if request.user.is_superuser %}
             <a href="/admin/auth/user/">Settings</a>
             {% endif %}
@@ -203,7 +205,9 @@
         <!-- Header -->
         <div class="header">
             <h3>Active Transport Database Access</h3>
-            <a href="/logout/">Logout</a>
+
+            <h5>{{user}} &nbsp;
+            <a href="/logout/">Logout</a></h5>
         </div>
 
         <!-- Cards or other content -->

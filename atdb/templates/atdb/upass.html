@@ -1,0 +1,17 @@
+<!-- update_password.html -->
+{% extends "basetemp/atbase.html" %}
+
+{% block content %}
+
+<style>
+	form {
+		width: 50%;
+	}
+</style>
+  <h2>Change Password</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-info">Update Password</button>
+  </form>
+{% endblock %}

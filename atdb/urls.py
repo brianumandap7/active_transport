@@ -44,5 +44,7 @@ urlpatterns = [
     path('fund-bulk-upload/', FundBulkUpload.as_view(), name='fund-bulk-upload'),
     path('del_maindb/<int:tag>/',  views.del_maindb, name='del_maindb'),
     path('un_maindb/<int:tag>/',  views.un_maindb, name='un_maindb'),
+
+    path('upass/', views.update_password, name='upass'),
 ]
 

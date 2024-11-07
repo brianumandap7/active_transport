@@ -7,10 +7,12 @@ from rest_framework.views import APIView
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from .forms import TypeofworkForm, RegionForm, BikeAreaForm, RoadSectionForm, BikeClassForm, FundSourceForm, BikelaneForm, ExcelUploadForm, UploadFileForm
+from .forms import TypeofworkForm, RegionForm, BikeAreaForm, RoadSectionForm, BikeClassForm, FundSourceForm, BikelaneForm, ExcelUploadForm, UploadFileForm, UpdatePasswordForm
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.utils import timezone
+
+from django.contrib.auth import update_session_auth_hash
 
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -32,6 +34,7 @@ import pandas as pd
 from datetime import datetime
 
 from .serializers import BikelaneTblSerializer
+
 
 
 #edit type of work
@@ -845,4 +848,18 @@ class bikDB(APIView):
         prog = bikelanetbl.objects.filter(status = 1)
         serializer = BikelaneTblSerializer(prog, many=True)
         return Response(serializer.data)
+
+def update_password(request):
+    if request.method == 'POST':
+        form = UpdatePasswordForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            user = form.save()  # This saves the new password
+            update_session_auth_hash(request, user)  # Important to keep the user logged in
+            messages.success(request, "Your password has been successfully updated!")
+            return redirect('/')  # Replace 'profile' with your desired redirect URL
+        else:
+            messages.error(request, "Please correct the error below.")
+    else:
+        form = UpdatePasswordForm(user=request.user)
+    return render(request, 'atdb/upass.html', {'form': form})
 
